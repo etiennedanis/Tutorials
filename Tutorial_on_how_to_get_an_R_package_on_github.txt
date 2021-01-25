@@ -57,8 +57,8 @@ RoxygenNote: 7.1.1
 > quit()
 Save workspace image? [y/n/c]: n    # Type 'n' for no, meaning not saving the workspace image.
 
-### You should have inside the new R package named 'NewRpackage', two files
-### 'DESCRIPTION', 'NAMESPACE' and a directory 'R/'
+### You should have inside the new R package named 'NewRpackage', two files named
+### 'DESCRIPTION', 'NAMESPACE' and one directory named 'R'.
 
 $ cd NewRpackage
 $ ls -ah
