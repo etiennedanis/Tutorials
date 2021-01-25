@@ -55,20 +55,21 @@ RoxygenNote: 7.1.1
 ✔ Writing 'NAMESPACE'
 
 > quit()
+Save workspace image? [y/n/c]: n    # Type 'n' for no, meaning not saving the workspace image.
 
-### You should have inside the new R package named 'NewRpackage', three files
-### 'DESCRIPTION', 'NAMESPACE' '.Rhistory' and a directory 'R/'
+### You should have inside the new R package named 'NewRpackage', two files
+### 'DESCRIPTION', 'NAMESPACE' and a directory 'R/'
 
 $ cd NewRpackage
 $ ls -ah
-DESCRIPTION   NAMESPACE   R/   .history
+DESCRIPTION   NAMESPACE   R/
 
 ### Now, create a git repository using 'git init'.
 ### The NewRpackage directory should contain the additional file '.git'
 
 $ git init
 $ ls -ah
-DESCRIPTION   .git/   NAMESPACE   R/   .history
+DESCRIPTION   .git/   NAMESPACE   R/
 
 ### You can checked the status of your git repository with 'git status'.
 ### NOTE: Check the git status often to keep track of all changes.
@@ -78,7 +79,6 @@ On branch master
 No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-        .Rhistory
         DESCRIPTION
         NAMESPACE
 nothing added to commit but untracked files present (use "git add" to track)
@@ -87,7 +87,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 $ git add DESCRIPTION NAMESPACE R/ # The directory R being empty it will not be added.
 
-### Check the new git status
+### Check the new local git repository status
 
 $ git status
 On branch master
@@ -96,9 +96,6 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   DESCRIPTION
         new file:   NAMESPACE
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        .Rhistory
 
 ### Before commiting your documents to your git repository and if it is the fist time
 ### that you commit documents to a git repository,
