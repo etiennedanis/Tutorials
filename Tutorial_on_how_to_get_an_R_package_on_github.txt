@@ -206,5 +206,15 @@ $ git log
 ### to create new repository.
 
 ### Type the name of your repository.
-### For example, 'NewRpackage.git'
+### For example, 'NewRpackage'
+
+### Back on your terminal, type:
+
+$ git remote add origin https://github.com/yourusername/NewRpackage.git
+$ git branch -M main
+$ git push -u origin main
+
+### And your new R package should be on github.
+### Congratulations!
+
 
