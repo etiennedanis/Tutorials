@@ -1,0 +1,210 @@
+### January 25th, 2020 ###
+### Based on a quick tutorial given via Zoom by Sean Davis
+
+### This introductory tutorial assumes that you already have git and R installed on your computer.
+### It also assumes that you are using a Linux OS and that you are using vim as a text editor.
+### This tutorial was validated using bash on Ubuntu 18.04.5.
+### NOTE: The commands should work with other Linux OS and Mac, except for
+### the software installation commands.
+
+### In the terminal, go to Documents.
+
+$ cd Documents
+
+### Create a directory named 'git'.
+
+$ mkdir git
+
+### Inside the directory 'git', create a new R package.
+### Type 'R' to create an R workspace then create a new R package with devtools.
+
+$ R # Just one capital letter 'R' and type enter.
+>
+
+### Then you'll need the R package devtools.
+### If you do not have devtools installed, install devtools the following way, type:
+
+> install.packages('devtools')
+
+### If you encounter issues with the installation of devtools, in particular with an error
+### message about the installation of other required packages such as 'gert' and 'usethis',
+### open another command line terminal and install 'libgit2-dev' with the following command:
+
+$ sudo apt-get install libgit2-dev # If you are using Linux
+
+### Once devtools is installed, load the required packages, create a new R package and quit the R workspace.
+
+> library(devtools)
+> devtools::create('NewRpackage')
+✔ Creating 'NewRpackage/'
+✔ Setting active project to '/home/yourusername/Documents/git/NewRpackage'
+✔ Creating 'R/'
+✔ Writing 'DESCRIPTION'
+Package: NewRpackage
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R (parsed):
+    * First Last <first.last@example.com> [aut, cre] (<https://orcid.org/YOUR-ORCID-ID>)
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+✔ Writing 'NAMESPACE'
+
+> quit()
+
+### You should have inside the new R package named 'NewRpackage', three files
+### 'DESCRIPTION', 'NAMESPACE' '.Rhistory' and a directory 'R/'
+
+$ cd NewRpackage
+$ ls -ah
+DESCRIPTION   NAMESPACE   R/   .history
+
+### Now, create a git repository using 'git init'.
+### The NewRpackage directory should contain the additional file '.git'
+
+$ git init
+$ ls -ah
+DESCRIPTION   .git/   NAMESPACE   R/   .history
+
+### You can checked the status of your git repository with 'git status'.
+### NOTE: Check the git status often to keep track of all changes.
+
+$ git status
+On branch master
+No commits yet
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .Rhistory
+        DESCRIPTION
+        NAMESPACE
+nothing added to commit but untracked files present (use "git add" to track)
+
+### Now add the files and folder to be added to the git repository
+
+$ git add DESCRIPTION NAMESPACE R/ # The directory R being empty it will not be added.
+
+### Check the new git status
+
+$ git status
+On branch master
+No commits yet
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   DESCRIPTION
+        new file:   NAMESPACE
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .Rhistory
+
+### Before commiting your documents to your git repository and if it is the fist time
+### that you commit documents to a git repository,
+### add personal information to your git repository.
+
+$ git config --global user.email "yourEmail@gmail.com"
+$ git config --global user.name "First name Last name"
+
+### You can check that your information was correctly recorded with:
+
+$ git config --global user.email
+yourEmail@gmail.com
+
+$ git congig --global user.name
+Your name
+
+### Then commit your added documents to your local git repository with a message:
+
+$ git commit -m "First commit for this new R package"
+[master (root-commit) edbe94e] First commit for this new R package
+ 2 files changed, 18 insertions(+)
+ create mode 100644 DESCRIPTION
+ create mode 100644 NAMESPACE
+
+### You can add some information in the DESCRIPTION file and commit the new changes.
+### The lines you can change are for example the ones for the title, the author or
+### the description.
+
+$ vim DESCRIPTION
+Package: NewRpackage
+Title: This package is just for the tutorial.
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "First name",
+           family = "Last name",
+           role = c("aut", "cre"),
+           email = "yourEmail@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package does nothing at all.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+
+### Save changes in vim and exit it.
+### If you check the status of your git repository, it will warn you that changes
+### have not been made and need to be added and re-committed.
+
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+        modified:   DESCRIPTION
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .Rhistory
+no changes added to commit (use "git add" and/or "git commit -a")
+
+### To see what changes were made, use git diff:
+
+$ git diff DESCRIPTION
+diff --git a/DESCRIPTION b/DESCRIPTION
+index 3f94056..933465a 100644
+--- a/DESCRIPTION
++++ b/DESCRIPTION
+@@ -1,11 +1,11 @@
+ Package: NewRpackage
+-Title: What the Package Does (One Line, Title Case)
++Title: This package is just for the tutorial.
+ Version: 0.0.0.9000
+ Authors@R:
+-    person(given = "First",
+-           family = "Last",
++    person(given = "First name",
++           family = "Last name",
+            role = c("aut", "cre"),
+-           email = "first.last@example.com",
++           email = "yourEmail@gmail.com",
+            comment = c(ORCID = "YOUR-ORCID-ID"))
+ Description: What the package does (one paragraph).
+ License: `use_mit_license()`, `use_gpl3_license()` or friends to
+
+### Re-add the file DESCRIPTION to the git repository and commit it
+### with a new message.
+
+$ git add DESCRIPTION
+$ git commit -m 'I just changed the title, the author name and email address'
+[master 5975569] I just changed the title, the author name and email address
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+### You can track the history of the work on the git repository with
+### git log
+
+$ git log
+
+### Upload your new R package to github
+### Go to your github page https://github.com
+### If you don't have one, create one.
+
+### On your page, in the left corner, find and click on 'New'
+### to create new repository.
+
+### Type the name of your repository.
+### For example, 'NewRpackage.git'
+
